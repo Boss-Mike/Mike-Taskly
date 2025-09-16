@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+    app:
+        build:
+            context: ..
+            dockerfile: docker/Dockerfile
+        image: ltms
+        container_name: ltms-container
+        restart: unless-stopped
+        working_dir: /var/www/html
+        ports:
+            - "8081:80"
+        volumes:
+            - ../app:/var/www/html/app
+            - ../config:/var/www/html/config
+            - ../database:/var/www/html/database
+            - ../public:/var/www/html/public
+            - ../resources:/var/www/html/resources
+            - ../routes:/var/www/html/routes
+            - ../storage:/var/www/html/storage
+            - ../bootstrap:/var/www/html/bootstrap
+            - ../.env:/var/www/html/.env
+            - ../artisan:/var/www/html/artisan
+            - ../composer.json:/var/www/html/composer.json
+            - ../composer.lock:/var/www/html/composer.lock
+        networks:
+            - app-network
+
+    db:
+        image: mysql:5.7
+        container_name: ltms-mysql-container
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: Root@1214.com
+            MYSQL_DATABASE: ltms
+            MYSQL_USER: ltms
+            MYSQL_PASSWORD: ltms@1214.com
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    dbdata:
+        driver: local
