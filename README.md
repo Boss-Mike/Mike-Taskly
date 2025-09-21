@@ -11,7 +11,7 @@ This is a Laravel application containerized with Docker, including Nginx, MySQL,
 
 ### 1. Clone the repository (if not already done)
 ```bash
-git clone <repository-url>
+git clone https://github.com/Boss-Mike/Mike-Taskly
 cd <project-directory>
 ```
 
