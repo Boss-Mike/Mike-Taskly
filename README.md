@@ -45,7 +45,6 @@ docker-compose up -d --build
 This will start the following services:
 - Laravel application (PHP-FPM)
 - Nginx web server
-- MySQL database
 - phpMyAdmin
 - Redis
 
@@ -71,8 +70,7 @@ docker-compose exec app php artisan migrate --seed
 
 ## Accessing the Application
 
-- **Web Application**: http://localhost:8080
-- **phpMyAdmin**: http://localhost:8081
+- **Web Application**: http://localhost:8081
   - Username: root
   - Password: rootpassword
 
